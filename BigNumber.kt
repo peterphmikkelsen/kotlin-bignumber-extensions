@@ -29,21 +29,29 @@ operator fun BigInteger.plus(x: Int) = this + x.bi
 operator fun Int.plus(x: BigInteger) = this.bi + x
 operator fun BigInteger.plus(x: Long) = this + x.bi
 operator fun Long.plus(x: BigInteger) = this.bi + x
+operator fun BigInteger.plus(x: Double) = this + x.bd
+operator fun Double.plus(x: BigInteger) = this.bd + x
 
 operator fun BigInteger.minus(x: Int) = this - x.bi
 operator fun Int.minus(x: BigInteger) = this.bi - x
 operator fun BigInteger.minus(x: Long) = this - x.bi
 operator fun Long.minus(x: BigInteger) = this.bi - x
+operator fun BigInteger.minus(x: Double) = this - x.bd
+operator fun Double.minus(x: BigInteger) = this.bd - x
 
 operator fun BigInteger.times(x: Int) = this * x.bi
 operator fun Int.times(x: BigInteger) = this.bi * x
 operator fun BigInteger.times(x: Long) = this * x.bi
 operator fun Long.times(x: BigInteger) = this.bi * x
+operator fun BigInteger.times(x: Double) = this * x.bd
+operator fun Double.times(x: BigInteger) = this.bd * x
 
 operator fun BigInteger.div(x: Int) = this / x.bi
 operator fun Int.div(x: BigInteger) = this.bi / x
 operator fun BigInteger.div(x: Long) = this / x.bi
 operator fun Long.div(x: BigInteger) = this.bi / x
+operator fun BigInteger.div(x: Double) = this / x.bd
+operator fun Double.div(x: BigInteger) = this.bd / x
 
 operator fun BigInteger.rem(x: Int) = this.remainder(x.bi)
 operator fun BigInteger.rem(x: Long) = this.remainder(x.bi)
@@ -103,14 +111,14 @@ operator fun Long.times(x: BigDecimal) = this.bd * x
 operator fun BigDecimal.times(x: BigInteger) = this * BigDecimal(x)
 operator fun BigInteger.times(x: BigDecimal) = BigDecimal(this) * x
 
-operator fun BigDecimal.div(x: Int) = this / x.bd
-operator fun Int.div(x: BigDecimal) = this.bd / x
-operator fun BigDecimal.div(x: Double) = this / x.bd
-operator fun Double.div(x: BigDecimal) = this.bd / x
-operator fun BigDecimal.div(x: Long) = this / x.bd
-operator fun Long.div(x: BigDecimal) = this.bd / x
-operator fun BigDecimal.div(x: BigInteger) = this / BigDecimal(x)
-operator fun BigInteger.div(x: BigDecimal) = BigDecimal(this) / x
+operator fun BigDecimal.div(x: Int) = this.divide(x.bd, 20, RoundingMode.HALF_UP).stripTrailingZeros()
+operator fun Int.div(x: BigDecimal) = this.bd.divide(x, 20, RoundingMode.HALF_UP).stripTrailingZeros()
+operator fun BigDecimal.div(x: Double) = this.divide(x.bd, 20, RoundingMode.HALF_UP).stripTrailingZeros()
+operator fun Double.div(x: BigDecimal) = this.bd.divide(x, 20, RoundingMode.HALF_UP).stripTrailingZeros()
+operator fun BigDecimal.div(x: Long) = this.divide(x.bd, 20, RoundingMode.HALF_UP).stripTrailingZeros()
+operator fun Long.div(x: BigDecimal) = this.bd.divide(x, 20, RoundingMode.HALF_UP).stripTrailingZeros()
+operator fun BigDecimal.div(x: BigInteger) = this.divide(BigDecimal(x), 20, RoundingMode.HALF_UP).stripTrailingZeros()
+operator fun BigInteger.div(x: BigDecimal) = BigDecimal(this).divide(x, 20, RoundingMode.HALF_UP).stripTrailingZeros()
 
 operator fun BigDecimal.rem(x: Int) = this.remainder(x.bd)
 operator fun BigDecimal.rem(x: Double) = this.remainder(x.bd)
